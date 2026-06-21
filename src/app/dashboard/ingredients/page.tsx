@@ -71,10 +71,10 @@ export default function IngredientsPage() {
   const handleAction = async (id: string, action: 'approve' | 'reject') => {
     setActionLoading(id);
     try {
-      const res = await fetch('/api/ingredients', {
+      const res = await fetch(`/api/ingredients/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, action }),
+        body: JSON.stringify({ action }),
       });
       if (res.ok) {
         setIngredients(ingredients.filter((ing) => ing.id !== id));
@@ -90,10 +90,10 @@ export default function IngredientsPage() {
     if (!editItem) return;
     setActionLoading(editItem.id);
     try {
-      const res = await fetch('/api/ingredients', {
+      const res = await fetch(`/api/ingredients/${editItem.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editItem.id, action: 'edit', edits }),
+        body: JSON.stringify({ action: 'edit', edits }),
       });
       if (res.ok) {
         setIngredients((prev) =>

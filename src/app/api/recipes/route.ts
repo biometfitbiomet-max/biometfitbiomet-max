@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/firebase';
+import { getDb } from '@/lib/firebase';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
+    const db = getDb();
     const snapshot = await db
       .collection('user_recipes')
       .where('status', '==', 'pending')

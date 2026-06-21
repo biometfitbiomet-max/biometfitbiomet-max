@@ -80,10 +80,10 @@ export default function RecipesPage() {
   const handleAction = async (id: string, action: 'approve' | 'reject') => {
     setActionLoading(id);
     try {
-      const res = await fetch('/api/recipes', {
+      const res = await fetch(`/api/recipes/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, action }),
+        body: JSON.stringify({ action }),
       });
       if (res.ok) {
         setRecipes(recipes.filter((r) => r.id !== id));
@@ -99,10 +99,10 @@ export default function RecipesPage() {
     if (!editItem) return;
     setActionLoading(editItem.id);
     try {
-      const res = await fetch('/api/recipes', {
+      const res = await fetch(`/api/recipes/${editItem.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editItem.id, action: 'edit', edits }),
+        body: JSON.stringify({ action: 'edit', edits }),
       });
       if (res.ok) {
         setRecipes((prev) =>

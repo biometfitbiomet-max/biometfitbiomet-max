@@ -1,14 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/firebase';
+import { getDb } from '@/lib/firebase';
 
-export async function PATCH(req: NextRequest) {
+export const dynamic = 'force-dynamic';
+
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
-    const { id, action, rejectionReason, edits } = await req.json();
+    const { id } = await params;
+    const { action, rejectionReason, edits } = await req.json();
 
-    if (!id || !action) {
-      return NextResponse.json({ error: 'Missing id or action' }, { status: 400 });
+    if (!action) {
+      return NextResponse.json({ error: 'Missing action' }, { status: 400 });
     }
 
+    const db = getDb();
     const docRef = db.collection('user_recipes').doc(id);
     const doc = await docRef.get();
 
