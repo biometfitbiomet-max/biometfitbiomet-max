@@ -35,39 +35,48 @@ export default function RecipesPage() {
       return;
     }
 
-    // Mock data - replace with Firestore fetch
-    setRecipes([
-      {
-        id: '1',
-        name: 'Omletă cu legume',
-        servings: 2,
-        prepTime: 10,
-        cookTime: 15,
-        totalCalories: 340,
-        totalProtein: 27.8,
-        totalCarbs: 13,
-        totalFat: 19.6,
-        ingredients: [
-          { ingredientName: 'Ou de găină', amount: 200, unit: 'grame' },
-          { ingredientName: 'Roșii', amount: 150, unit: 'grame' },
-        ],
-        createdAt: new Date().toISOString(),
-        userId: 'user123',
-      },
-    ]);
-    setLoading(false);
+    // Fetch real pending recipes from Firestore
+    fetch('/api/recipes')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          console.error('Recipes error:', data.error);
+        } else {
+          setRecipes(data);
+        }
+      })
+      .catch((err) => console.error('Failed to fetch recipes:', err))
+      .finally(() => setLoading(false));
   }, [router]);
 
   const handleApprove = async (id: string) => {
-    // Implement Firestore update: status = 'approved', isPublic = true
-    console.log('Approve recipe:', id);
-    setRecipes(recipes.filter((recipe) => recipe.id !== id));
+    try {
+      const res = await fetch('/api/recipes', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action: 'approve' }),
+      });
+      if (res.ok) {
+        setRecipes(recipes.filter((recipe) => recipe.id !== id));
+      }
+    } catch (err) {
+      console.error('Failed to approve:', err);
+    }
   };
 
   const handleReject = async (id: string) => {
-    // Implement Firestore update: status = 'rejected'
-    console.log('Reject recipe:', id);
-    setRecipes(recipes.filter((recipe) => recipe.id !== id));
+    try {
+      const res = await fetch('/api/recipes', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action: 'reject' }),
+      });
+      if (res.ok) {
+        setRecipes(recipes.filter((recipe) => recipe.id !== id));
+      }
+    } catch (err) {
+      console.error('Failed to reject:', err);
+    }
   };
 
   if (loading) {

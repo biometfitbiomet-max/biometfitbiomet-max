@@ -28,44 +28,48 @@ export default function IngredientsPage() {
       return;
     }
 
-    // Mock data - replace with Firestore fetch
-    setIngredients([
-      {
-        id: '1',
-        name: 'Piept de pui la grătar',
-        calories: 165,
-        protein: 31,
-        carbs: 0,
-        fat: 3.6,
-        unit: 'grame',
-        createdAt: new Date().toISOString(),
-        userId: 'user123',
-      },
-      {
-        id: '2',
-        name: 'Orez brun',
-        calories: 111,
-        protein: 2.6,
-        carbs: 23,
-        fat: 0.9,
-        unit: 'grame',
-        createdAt: new Date().toISOString(),
-        userId: 'user456',
-      },
-    ]);
-    setLoading(false);
+    // Fetch real pending ingredients from Firestore
+    fetch('/api/ingredients')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          console.error('Ingredients error:', data.error);
+        } else {
+          setIngredients(data);
+        }
+      })
+      .catch((err) => console.error('Failed to fetch ingredients:', err))
+      .finally(() => setLoading(false));
   }, [router]);
 
   const handleApprove = async (id: string) => {
-    // Implement Firestore update: status = 'approved', isPublic = true
-    console.log('Approve ingredient:', id);
-    setIngredients(ingredients.filter((ing) => ing.id !== id));
+    try {
+      const res = await fetch('/api/ingredients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action: 'approve' }),
+      });
+      if (res.ok) {
+        setIngredients(ingredients.filter((ing) => ing.id !== id));
+      }
+    } catch (err) {
+      console.error('Failed to approve:', err);
+    }
   };
 
   const handleReject = async (id: string) => {
-    // Implement Firestore update: status = 'rejected'
-    console.log('Reject ingredient:', id);
-    setIngredients(ingredients.filter((ing) => ing.id !== id));
+    try {
+      const res = await fetch('/api/ingredients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action: 'reject' }),
+      });
+      if (res.ok) {
+        setIngredients(ingredients.filter((ing) => ing.id !== id));
+      }
+    } catch (err) {
+      console.error('Failed to reject:', err);
+    }
   };
 
   if (loading) {

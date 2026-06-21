@@ -22,14 +22,18 @@ export default function DashboardPage() {
       return;
     }
 
-    // Fetch stats (mock data for now)
-    setStats({
-      pendingIngredients: 15,
-      pendingRecipes: 8,
-      approvedToday: 12,
-      rejectedToday: 3,
-    });
-    setLoading(false);
+    // Fetch real stats from Firestore
+    fetch('/api/stats')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          console.error('Stats error:', data.error);
+        } else {
+          setStats(data);
+        }
+      })
+      .catch((err) => console.error('Failed to fetch stats:', err))
+      .finally(() => setLoading(false));
   }, [router]);
 
   const handleLogout = () => {
