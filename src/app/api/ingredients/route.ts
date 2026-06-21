@@ -17,7 +17,13 @@ export async function GET() {
         protein: data.protein || 0,
         carbs: data.carbs || 0,
         fat: data.fat || 0,
+        saturatedFat: data.saturatedFat || null,
+        sugar: data.sugar || null,
+        fiber: data.fiber || null,
+        salt: data.salt || null,
         unit: data.unit || 'grame',
+        portionSize: data.portionSize || null,
+        description: data.description || null,
         userId: data.userId || '',
         createdAt: data.createdAt?.toDate()?.toISOString() || new Date().toISOString(),
       };

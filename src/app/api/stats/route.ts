@@ -3,29 +3,44 @@ import { db } from '@/lib/firebase';
 
 export async function GET() {
   try {
-    const [pendingIngredientsSnap, pendingRecipesSnap, approvedIngredientsSnap, rejectedIngredientsSnap, approvedRecipesSnap, rejectedRecipesSnap] = await Promise.all([
-      db.collection('user_ingredients').where('status', '==', 'pending').get(),
-      db.collection('user_recipes').where('status', '==', 'pending').get(),
-      db.collection('user_ingredients').where('status', '==', 'approved').get(),
-      db.collection('user_ingredients').where('status', '==', 'rejected').get(),
-      db.collection('user_recipes').where('status', '==', 'approved').get(),
-      db.collection('user_recipes').where('status', '==', 'rejected').get(),
-    ]);
-
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const countToday = (snapshot: any, dateField: string) => {
-      return snapshot.docs.filter((doc: any) => {
-        const dateValue = doc.data()[dateField];
-        if (!dateValue) return false;
-        const docDate = dateValue.toDate ? dateValue.toDate() : new Date(dateValue);
-        return docDate >= today;
-      }).length;
-    };
+    const [pendingIngredientsSnap, pendingRecipesSnap, ingredientsSnap, recipesSnap] = await Promise.all([
+      db.collection('user_ingredients').where('status', '==', 'pending').get(),
+      db.collection('user_recipes').where('status', '==', 'pending').get(),
+      db.collection('user_ingredients').where('status', '==', 'approved').get(),
+      db.collection('user_recipes').where('status', '==', 'rejected').get(),
+    ]);
 
-    const approvedToday = countToday(approvedIngredientsSnap, 'approvedAt') + countToday(approvedRecipesSnap, 'approvedAt');
-    const rejectedToday = countToday(rejectedIngredientsSnap, 'updatedAt') + countToday(rejectedRecipesSnap, 'updatedAt');
+    let approvedToday = 0;
+    let rejectedToday = 0;
+
+    ingredientsSnap.docs.forEach((doc) => {
+      const data = doc.data();
+      const approvedAt = data.approvedAt?.toDate?.();
+      if (approvedAt && approvedAt >= today) approvedToday++;
+    });
+
+    recipesSnap.docs.forEach((doc) => {
+      const data = doc.data();
+      const updatedAt = data.updatedAt?.toDate?.();
+      if (updatedAt && updatedAt >= today) rejectedToday++;
+    });
+
+    const rejectedIngredientsSnap = await db.collection('user_ingredients').where('status', '==', 'rejected').get();
+    rejectedIngredientsSnap.docs.forEach((doc) => {
+      const data = doc.data();
+      const updatedAt = data.updatedAt?.toDate?.();
+      if (updatedAt && updatedAt >= today) rejectedToday++;
+    });
+
+    const approvedRecipesSnap = await db.collection('user_recipes').where('status', '==', 'approved').get();
+    approvedRecipesSnap.docs.forEach((doc) => {
+      const data = doc.data();
+      const approvedAt = data.approvedAt?.toDate?.();
+      if (approvedAt && approvedAt >= today) approvedToday++;
+    });
 
     return NextResponse.json({
       pendingIngredients: pendingIngredientsSnap.size,
@@ -35,6 +50,6 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Error fetching stats:', error);
-    return NextResponse.json({ error: 'Eroare la încărcarea statisticilor' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch stats' }, { status: 500 });
   }
 }
