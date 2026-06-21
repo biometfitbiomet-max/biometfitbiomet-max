@@ -72,6 +72,19 @@ export default function LoginPage() {
           >
             {loading ? 'Loading...' : 'Login'}
           </Button>
+          <Button
+            type="button"
+            onClick={() => {
+              setEmail('admin@biometfit.com');
+              setPassword('admin123');
+            }}
+            className="w-full bg-gray-600 hover:bg-gray-700 mt-2"
+          >
+            Auto-fill Test Credentials
+          </Button>
+          <div className="text-gray-400 text-xs mt-2">
+            Test: admin@biometfit.com / admin123
+          </div>
         </form>
       </div>
     </div>
