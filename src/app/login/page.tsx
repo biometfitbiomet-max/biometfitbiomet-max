@@ -30,11 +30,11 @@ export default function LoginPage() {
         router.push('/dashboard');
       } else {
         console.log('✗ Invalid credentials');
-        setError('Invalid credentials');
+        setError('Credențiale invalide');
       }
     } catch (err) {
       console.error('✗ Login error:', err);
-      setError('Login failed');
+      setError('Autentificare eșuată');
     } finally {
       console.log('=== LOGIN ATTEMPT END ===');
       setLoading(false);
@@ -59,7 +59,7 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <label className="block text-gray-300 mb-2">Password</label>
+            <label className="block text-gray-300 mb-2">Parolă</label>
             <input
               type="password"
               value={password}
@@ -76,7 +76,7 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-blue-600 hover:bg-blue-700"
           >
-            {loading ? 'Loading...' : 'Login'}
+            {loading ? 'Se încarcă...' : 'Autentificare'}
           </Button>
           <Button
             type="button"
@@ -86,7 +86,7 @@ export default function LoginPage() {
             }}
             className="w-full bg-gray-600 hover:bg-gray-700 mt-2"
           >
-            Auto-fill Test Credentials
+            Completare automată credențiale test
           </Button>
           <div className="text-gray-400 text-xs mt-2">
             Test: admin@biometfit.com / admin123

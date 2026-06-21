@@ -44,7 +44,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="text-white">Loading...</div>
+        <div className="text-white">Se încarcă...</div>
       </div>
     );
   }
@@ -54,28 +54,28 @@ export default function DashboardPage() {
       <nav className="bg-gray-800 p-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">BiometFit Admin</h1>
         <Button onClick={handleLogout} variant="outline">
-          Logout
+          Deconectare
         </Button>
       </nav>
 
       <div className="p-8">
-        <h2 className="text-3xl font-bold mb-8">Dashboard</h2>
+        <h2 className="text-3xl font-bold mb-8">Panou de control</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-gray-400 mb-2">Pending Ingredients</h3>
+            <h3 className="text-gray-400 mb-2">Alimente în așteptare</h3>
             <p className="text-4xl font-bold text-yellow-400">{stats.pendingIngredients}</p>
           </div>
           <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-gray-400 mb-2">Pending Recipes</h3>
+            <h3 className="text-gray-400 mb-2">Rețete în așteptare</h3>
             <p className="text-4xl font-bold text-yellow-400">{stats.pendingRecipes}</p>
           </div>
           <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-gray-400 mb-2">Approved Today</h3>
+            <h3 className="text-gray-400 mb-2">Aprobate azi</h3>
             <p className="text-4xl font-bold text-green-400">{stats.approvedToday}</p>
           </div>
           <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-gray-400 mb-2">Rejected Today</h3>
+            <h3 className="text-gray-400 mb-2">Respise azi</h3>
             <p className="text-4xl font-bold text-red-400">{stats.rejectedToday}</p>
           </div>
         </div>
@@ -85,13 +85,13 @@ export default function DashboardPage() {
             onClick={() => router.push('/dashboard/ingredients')}
             className="bg-blue-600 hover:bg-blue-700 h-32 text-xl"
           >
-            Review Ingredients
+            Revizuire Alimente
           </Button>
           <Button
             onClick={() => router.push('/dashboard/recipes')}
             className="bg-purple-600 hover:bg-purple-700 h-32 text-xl"
           >
-            Review Recipes
+            Revizuire Rețete
           </Button>
         </div>
       </div>

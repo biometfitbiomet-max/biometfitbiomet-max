@@ -75,7 +75,7 @@ export default function IngredientsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="text-white">Loading...</div>
+        <div className="text-white">Se încarcă...</div>
       </div>
     );
   }
@@ -84,16 +84,16 @@ export default function IngredientsPage() {
     <div className="min-h-screen bg-gray-900 text-white">
       <nav className="bg-gray-800 p-4 flex justify-between items-center">
         <Button onClick={() => router.push('/dashboard')} variant="outline">
-          ← Back to Dashboard
+          ← Înapoi la Panou
         </Button>
-        <h1 className="text-2xl font-bold">Review Ingredients</h1>
+        <h1 className="text-2xl font-bold">Revizuire Alimente</h1>
         <div className="w-24" />
       </nav>
 
       <div className="p-8">
         {ingredients.length === 0 ? (
           <div className="text-center text-gray-400 py-12">
-            No pending ingredients to review
+            Nu sunt alimente în așteptare pentru revizuire
           </div>
         ) : (
           <div className="space-y-4">
@@ -106,7 +106,7 @@ export default function IngredientsPage() {
                   <div>
                     <h3 className="text-xl font-bold mb-2">{ingredient.name}</h3>
                     <div className="text-gray-400 text-sm">
-                      Created by: {ingredient.userId}
+                      Creat de: {ingredient.userId}
                     </div>
                   </div>
                   <div className="text-right">
@@ -118,19 +118,19 @@ export default function IngredientsPage() {
 
                 <div className="grid grid-cols-4 gap-4 mb-4">
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Calories</div>
+                    <div className="text-gray-400 text-sm">Calorii</div>
                     <div className="text-xl font-bold">{ingredient.calories}</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Protein</div>
+                    <div className="text-gray-400 text-sm">Proteine</div>
                     <div className="text-xl font-bold">{ingredient.protein}g</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Carbs</div>
+                    <div className="text-gray-400 text-sm">Carbohidrați</div>
                     <div className="text-xl font-bold">{ingredient.carbs}g</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Fat</div>
+                    <div className="text-gray-400 text-sm">Grăsimi</div>
                     <div className="text-xl font-bold">{ingredient.fat}g</div>
                   </div>
                 </div>
@@ -140,13 +140,13 @@ export default function IngredientsPage() {
                     onClick={() => handleApprove(ingredient.id)}
                     className="bg-green-600 hover:bg-green-700 flex-1"
                   >
-                    Approve
+                    Aprobă
                   </Button>
                   <Button
                     onClick={() => handleReject(ingredient.id)}
                     className="bg-red-600 hover:bg-red-700 flex-1"
                   >
-                    Reject
+                    Respinge
                   </Button>
                 </div>
               </div>

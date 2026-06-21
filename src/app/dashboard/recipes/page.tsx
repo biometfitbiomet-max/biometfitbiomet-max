@@ -82,7 +82,7 @@ export default function RecipesPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="text-white">Loading...</div>
+        <div className="text-white">Se încarcă...</div>
       </div>
     );
   }
@@ -91,16 +91,16 @@ export default function RecipesPage() {
     <div className="min-h-screen bg-gray-900 text-white">
       <nav className="bg-gray-800 p-4 flex justify-between items-center">
         <Button onClick={() => router.push('/dashboard')} variant="outline">
-          ← Back to Dashboard
+          ← Înapoi la Panou
         </Button>
-        <h1 className="text-2xl font-bold">Review Recipes</h1>
+        <h1 className="text-2xl font-bold">Revizuire Rețete</h1>
         <div className="w-24" />
       </nav>
 
       <div className="p-8">
         {recipes.length === 0 ? (
           <div className="text-center text-gray-400 py-12">
-            No pending recipes to review
+            Nu sunt rețete în așteptare pentru revizuire
           </div>
         ) : (
           <div className="space-y-4">
@@ -113,7 +113,7 @@ export default function RecipesPage() {
                   <div>
                     <h3 className="text-xl font-bold mb-2">{recipe.name}</h3>
                     <div className="text-gray-400 text-sm">
-                      Created by: {recipe.userId}
+                      Creat de: {recipe.userId}
                     </div>
                   </div>
                   <div className="text-right">
@@ -125,25 +125,25 @@ export default function RecipesPage() {
 
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Servings</div>
+                    <div className="text-gray-400 text-sm">Porții</div>
                     <div className="text-xl font-bold">{recipe.servings}</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Prep Time</div>
+                    <div className="text-gray-400 text-sm">Timp preparare</div>
                     <div className="text-xl font-bold">{recipe.prepTime} min</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Cook Time</div>
+                    <div className="text-gray-400 text-sm">Timp gătire</div>
                     <div className="text-xl font-bold">{recipe.cookTime} min</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Total Calories</div>
+                    <div className="text-gray-400 text-sm">Calorii totale</div>
                     <div className="text-xl font-bold">{recipe.totalCalories}</div>
                   </div>
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="text-gray-400 text-sm mb-2">Ingredients</h4>
+                  <h4 className="text-gray-400 text-sm mb-2">Ingrediente</h4>
                   <div className="space-y-1">
                     {recipe.ingredients.map((ing, idx) => (
                       <div key={idx} className="text-sm">
@@ -155,19 +155,19 @@ export default function RecipesPage() {
 
                 <div className="grid grid-cols-4 gap-4 mb-4">
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Protein</div>
+                    <div className="text-gray-400 text-sm">Proteine</div>
                     <div className="text-xl font-bold">{recipe.totalProtein}g</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Carbs</div>
+                    <div className="text-gray-400 text-sm">Carbohidrați</div>
                     <div className="text-xl font-bold">{recipe.totalCarbs}g</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Fat</div>
+                    <div className="text-gray-400 text-sm">Grăsimi</div>
                     <div className="text-xl font-bold">{recipe.totalFat}g</div>
                   </div>
                   <div className="bg-gray-700 p-3 rounded">
-                    <div className="text-gray-400 text-sm">Cal/Serving</div>
+                    <div className="text-gray-400 text-sm">Cal/Porție</div>
                     <div className="text-xl font-bold">
                       {Math.round(recipe.totalCalories / recipe.servings)}
                     </div>
@@ -179,13 +179,13 @@ export default function RecipesPage() {
                     onClick={() => handleApprove(recipe.id)}
                     className="bg-green-600 hover:bg-green-700 flex-1"
                   >
-                    Approve
+                    Aprobă
                   </Button>
                   <Button
                     onClick={() => handleReject(recipe.id)}
                     className="bg-red-600 hover:bg-red-700 flex-1"
                   >
-                    Reject
+                    Respinge
                   </Button>
                 </div>
               </div>

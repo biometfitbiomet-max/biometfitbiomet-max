@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
 
 export async function GET() {
@@ -6,18 +6,26 @@ export async function GET() {
     const snapshot = await db
       .collection('user_ingredients')
       .where('status', '==', 'pending')
-      .orderBy('createdAt', 'desc')
       .get();
 
-    const ingredients = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data().createdAt?.toDate()?.toISOString() || new Date().toISOString(),
-    }));
+    const ingredients = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        name: data.name || '',
+        calories: data.calories || 0,
+        protein: data.protein || 0,
+        carbs: data.carbs || 0,
+        fat: data.fat || 0,
+        unit: data.unit || 'grame',
+        userId: data.userId || '',
+        createdAt: data.createdAt?.toDate()?.toISOString() || new Date().toISOString(),
+      };
+    });
 
     return NextResponse.json(ingredients);
   } catch (error) {
     console.error('Error fetching pending ingredients:', error);
-    return NextResponse.json({ error: 'Failed to fetch ingredients' }, { status: 500 });
+    return NextResponse.json({ error: 'Eroare la încărcarea alimentelor' }, { status: 500 });
   }
 }
