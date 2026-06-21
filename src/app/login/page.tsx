@@ -13,24 +13,30 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login attempt:', { email, password });
+    console.log('=== LOGIN ATTEMPT ===');
+    console.log('Email:', email);
+    console.log('Password:', password);
+    console.log('Email match:', email === 'admin@biometfit.com');
+    console.log('Password match:', password === 'admin123');
     setError('');
     setLoading(true);
 
     try {
       // Simple admin check - in production, use Firebase Auth
       if (email === 'admin@biometfit.com' && password === 'admin123') {
-        console.log('Login successful');
+        console.log('✓ Login successful - setting localStorage');
         localStorage.setItem('admin_authenticated', 'true');
+        console.log('✓ localStorage set - redirecting to dashboard');
         router.push('/dashboard');
       } else {
-        console.log('Invalid credentials');
+        console.log('✗ Invalid credentials');
         setError('Invalid credentials');
       }
     } catch (err) {
-      console.error('Login error:', err);
+      console.error('✗ Login error:', err);
       setError('Login failed');
     } finally {
+      console.log('=== LOGIN ATTEMPT END ===');
       setLoading(false);
     }
   };
