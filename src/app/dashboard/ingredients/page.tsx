@@ -24,8 +24,6 @@ interface Ingredient {
 interface UserInfo {
   uid: string;
   email: string;
-  displayName: string | null;
-  photoURL: string | null;
 }
 
 export default function IngredientsPage() {
@@ -181,13 +179,9 @@ export default function IngredientsPage() {
                         <h3 className="text-white font-semibold text-lg truncate">{ingredient.name}</h3>
                         <div className="flex items-center gap-3 mt-1.5 text-xs text-[#8892b0]">
                           <span className="flex items-center gap-1.5">
-                            {user?.photoURL ? (
-                              <img src={user.photoURL} alt="" className="w-4 h-4 rounded-full" />
-                            ) : (
-                              <div className="w-4 h-4 rounded-full bg-[#64ffda]/20 flex items-center justify-center text-[8px] text-[#64ffda] font-bold">
-                                {(user?.email || ingredient.userId)[0]?.toUpperCase()}
-                              </div>
-                            )}
+                            <div className="w-4 h-4 rounded-full bg-[#64ffda]/20 flex items-center justify-center text-[8px] text-[#64ffda] font-bold">
+                              {(user?.email || ingredient.userId)[0]?.toUpperCase()}
+                            </div>
                             {user?.email || ingredient.userId.slice(0, 12) + '...'}
                           </span>
                           <span className="flex items-center gap-1">
