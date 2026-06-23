@@ -12,6 +12,7 @@ interface RecipeIngredient {
 interface Recipe {
   id: string;
   name: string;
+  imageUrl: string | null;
   servings: number;
   prepTime: number;
   cookTime: number;
@@ -182,6 +183,19 @@ export default function RecipesPage() {
                   key={recipe.id}
                   className="bg-[#172a45] rounded-2xl border border-[#233554] overflow-hidden hover:border-[#64ffda]/20 transition-colors"
                 >
+                  {recipe.imageUrl && (
+                    <div className="relative w-full h-48 bg-[#0a192f]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={recipe.imageUrl}
+                        alt={recipe.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
                   <div className="p-5 pb-4">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">

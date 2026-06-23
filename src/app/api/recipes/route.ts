@@ -16,6 +16,7 @@ export async function GET() {
       return {
         id: doc.id,
         name: data.name || '',
+        imageUrl: data.imageUrl || null,
         servings: data.servings || 1,
         prepTime: data.prepTime || 0,
         cookTime: data.cookTime || 0,
