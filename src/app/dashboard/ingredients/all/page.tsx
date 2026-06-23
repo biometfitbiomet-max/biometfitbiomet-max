@@ -42,6 +42,7 @@ export default function AllIngredientsPage() {
   const [editMessage, setEditMessage] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<Ingredient | null>(null);
   const [deleteSaving, setDeleteSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const fetchIngredients = useCallback(
     async (pageNum: number, searchTerm: string, cursor: string | null) => {
@@ -580,13 +581,67 @@ export default function AllIngredientsPage() {
                 />
               </div>
               <div className="col-span-2">
-                <label className="block text-[#8892b0] text-xs mb-1">URL Imagine</label>
-                <input
-                  type="text"
-                  value={editForm.imageUrl || ''}
-                  onChange={(e) => setEditForm({ ...editForm, imageUrl: e.target.value })}
-                  className="w-full bg-[#0a192f] text-white rounded-lg px-3 py-2 border border-[#233554] focus:border-[#64ffda] focus:outline-none text-sm"
-                />
+                <label className="block text-[#8892b0] text-xs mb-1">Imagine</label>
+                <div className="flex items-center gap-4">
+                  {editForm.imageUrl ? (
+                    <img
+                      src={editForm.imageUrl}
+                      alt="Preview"
+                      className="w-16 h-16 rounded-xl object-cover border border-[#233554]"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 rounded-xl bg-[#0a192f] border border-[#233554] flex items-center justify-center">
+                      <svg className="w-6 h-6 text-[#8892b0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    <label className="cursor-pointer inline-flex items-center gap-2 bg-[#0a192f] text-[#64ffda] rounded-lg px-4 py-2 border border-[#233554] hover:border-[#64ffda]/40 text-sm font-medium transition-colors">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      {uploading ? 'Se încarcă...' : editForm.imageUrl ? 'Înlocuiește' : 'Încarcă imagine'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        disabled={uploading}
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file || !editing) return;
+                          setUploading(true);
+                          try {
+                            const formData = new FormData();
+                            formData.append('file', file);
+                            const res = await fetch(`/api/upload?folder=ingredients&id=${editing.id}`, {
+                              method: 'POST',
+                              body: formData,
+                            });
+                            const data = await res.json();
+                            if (data.url) {
+                              setEditForm({ ...editForm, imageUrl: data.url });
+                            } else {
+                              alert(data.error || 'Eroare la încărcare');
+                            }
+                          } catch {
+                            alert('Eroare la încărcare');
+                          } finally {
+                            setUploading(false);
+                          }
+                        }}
+                      />
+                    </label>
+                    {editForm.imageUrl && (
+                      <button
+                        onClick={() => setEditForm({ ...editForm, imageUrl: '' })}
+                        className="ml-2 text-red-400 hover:text-red-300 text-xs font-medium"
+                      >
+                        Elimină
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
