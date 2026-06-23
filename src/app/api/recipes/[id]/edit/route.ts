@@ -3,6 +3,28 @@ import { getDb } from '@/lib/firebase';
 
 export const dynamic = 'force-dynamic';
 
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const db = getDb();
+    const docRef = db.collection('user_recipes').doc(id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return NextResponse.json({ error: 'Recipe not found' }, { status: 404 });
+    }
+
+    await docRef.delete();
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting recipe:', error);
+    return NextResponse.json({ error: 'Failed to delete recipe' }, { status: 500 });
+  }
+}
+
 export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }

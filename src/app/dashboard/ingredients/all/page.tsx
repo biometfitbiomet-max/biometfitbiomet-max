@@ -40,6 +40,8 @@ export default function AllIngredientsPage() {
   const [editForm, setEditForm] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
   const [editMessage, setEditMessage] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState<Ingredient | null>(null);
+  const [deleteSaving, setDeleteSaving] = useState(false);
 
   const fetchIngredients = useCallback(
     async (pageNum: number, searchTerm: string, cursor: string | null) => {
@@ -321,12 +323,18 @@ export default function AllIngredientsPage() {
                           </span>
                         )}
                       </td>
-                      <td className="px-4 py-3 text-center">
+                      <td className="px-4 py-3 text-center whitespace-nowrap">
                         <button
                           onClick={() => openEdit(ing)}
-                          className="text-[#64ffda] hover:text-[#64ffda]/80 text-xs font-medium"
+                          className="text-[#64ffda] hover:text-[#64ffda]/80 text-xs font-medium mr-3"
                         >
                           Editează
+                        </button>
+                        <button
+                          onClick={() => setDeleting(ing)}
+                          className="text-red-400 hover:text-red-300 text-xs font-medium"
+                        >
+                          Șterge
                         </button>
                       </td>
                     </tr>
@@ -360,6 +368,65 @@ export default function AllIngredientsPage() {
           </>
         )}
       </main>
+
+      {/* Delete Confirm Modal */}
+      {deleting && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+          onClick={() => !deleteSaving && setDeleting(null)}
+        >
+          <div
+            className="bg-[#172a45] rounded-2xl border border-[#233554] p-6 max-w-md w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <h2 className="text-white font-semibold text-lg">Confirmă ștergerea</h2>
+            </div>
+            <p className="text-[#8892b0] text-sm mb-1">Sigur vrei să ștergi alimentul:</p>
+            <p className="text-white font-medium mb-4">{deleting.name}</p>
+            <p className="text-red-400/70 text-xs mb-6">
+              ⚠️ Această acțiune este ireversibilă. Dacă utilizatori au acest aliment în jurnal, referința va fi pierdută.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setDeleting(null)}
+                disabled={deleteSaving}
+                className="flex-1 py-2.5 rounded-xl border border-[#233554] text-[#8892b0] hover:text-white text-sm font-medium transition-colors"
+              >
+                Anulează
+              </button>
+              <button
+                onClick={async () => {
+                  setDeleteSaving(true);
+                  try {
+                    const res = await fetch(`/api/ingredients/${deleting.id}/edit`, { method: 'DELETE' });
+                    if (res.ok) {
+                      setIngredients((prev) => prev.filter((i) => i.id !== deleting.id));
+                      setDeleting(null);
+                    } else {
+                      const data = await res.json();
+                      alert(data.error || 'Eroare la ștergere');
+                    }
+                  } catch {
+                    alert('Eroare la ștergere');
+                  } finally {
+                    setDeleteSaving(false);
+                  }
+                }}
+                disabled={deleteSaving}
+                className="flex-1 py-2.5 rounded-xl bg-red-500 text-white font-semibold text-sm hover:bg-red-500/90 transition-colors disabled:opacity-50"
+              >
+                {deleteSaving ? 'Se șterge...' : 'Șterge definitiv'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Edit Modal */}
       {editing && (
