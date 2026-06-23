@@ -103,15 +103,16 @@ export default function DashboardPage() {
           ))}
         </div>
 
-        {/* Action cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Review section */}
+        <h2 className="text-white font-semibold text-base mb-3 mt-2">Revizuire conținut</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
           <button
             onClick={() => router.push('/dashboard/ingredients')}
             className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-[#64ffda]/10 flex items-center justify-center group-hover:bg-[#64ffda]/20 transition-colors">
-                <svg className="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-xl bg-amber-400/10 flex items-center justify-center group-hover:bg-amber-400/20 transition-colors">
+                <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
@@ -128,8 +129,8 @@ export default function DashboardPage() {
             className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-[#64ffda]/10 flex items-center justify-center group-hover:bg-[#64ffda]/20 transition-colors">
-                <svg className="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-xl bg-amber-400/10 flex items-center justify-center group-hover:bg-amber-400/20 transition-colors">
+                <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                 </svg>
               </div>
@@ -139,6 +140,46 @@ export default function DashboardPage() {
               </div>
             </div>
             <p className="text-[#8892b0] text-sm">Aprobă sau respinge rețetele create de utilizatori</p>
+          </button>
+        </div>
+
+        {/* Management section */}
+        <h2 className="text-white font-semibold text-base mb-3">Gestionare baza de date</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <button
+            onClick={() => router.push('/dashboard/ingredients/all')}
+            className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[#64ffda]/10 flex items-center justify-center group-hover:bg-[#64ffda]/20 transition-colors">
+                <svg className="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Toate Alimentele</h3>
+                <p className="text-[#8892b0] text-sm">Caută și editează baza de date</p>
+              </div>
+            </div>
+            <p className="text-[#8892b0] text-sm">Vizualizează, caută și modifică alimentele din baza de date</p>
+          </button>
+
+          <button
+            onClick={() => router.push('/dashboard/recipes/all')}
+            className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[#64ffda]/10 flex items-center justify-center group-hover:bg-[#64ffda]/20 transition-colors">
+                <svg className="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Toate Rețetele</h3>
+                <p className="text-[#8892b0] text-sm">Caută și editează rețetele</p>
+              </div>
+            </div>
+            <p className="text-[#8892b0] text-sm">Vizualizează, caută și modifică toate rețetele din baza de date</p>
           </button>
         </div>
       </main>
