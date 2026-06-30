@@ -145,7 +145,7 @@ export default function DashboardPage() {
 
         {/* Management section */}
         <h2 className="text-white font-semibold text-base mb-3">Gestionare baza de date</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           <button
             onClick={() => router.push('/dashboard/ingredients/all')}
             className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
@@ -180,6 +180,42 @@ export default function DashboardPage() {
               </div>
             </div>
             <p className="text-[#8892b0] text-sm">Vizualizează, caută și modifică toate rețetele din baza de date</p>
+          </button>
+
+          <button
+            onClick={() => router.push('/dashboard/exercises')}
+            className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[#64ffda]/10 flex items-center justify-center group-hover:bg-[#64ffda]/20 transition-colors">
+                <svg className="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Exerciții</h3>
+                <p className="text-[#8892b0] text-sm">Editează exercițiile de antrenament</p>
+              </div>
+            </div>
+            <p className="text-[#8892b0] text-sm">Vizualizează, caută și modifică exercițiile din baza de date</p>
+          </button>
+
+          <button
+            onClick={() => router.push('/dashboard/programs')}
+            className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[#64ffda]/10 flex items-center justify-center group-hover:bg-[#64ffda]/20 transition-colors">
+                <svg className="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Programe Antrenament</h3>
+                <p className="text-[#8892b0] text-sm">Editează titlurile programelor</p>
+              </div>
+            </div>
+            <p className="text-[#8892b0] text-sm">Modifică denumirile celor 27 de programe de antrenament</p>
           </button>
         </div>
       </main>
