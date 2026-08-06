@@ -217,6 +217,24 @@ export default function DashboardPage() {
             </div>
             <p className="text-[#8892b0] text-sm">Modifică denumirile celor 27 de programe de antrenament</p>
           </button>
+
+          <button
+            onClick={() => router.push('/dashboard/ai-settings')}
+            className="group bg-[#172a45] rounded-2xl p-6 border border-[#233554] hover:border-[#64ffda]/40 transition-all text-left"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[#64ffda]/10 flex items-center justify-center group-hover:bg-[#64ffda]/20 transition-colors">
+                <svg className="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Setări AI</h3>
+                <p className="text-[#8892b0] text-sm">Key Groq &amp; modele</p>
+              </div>
+            </div>
+            <p className="text-[#8892b0] text-sm">Schimbă API key-ul și modelele AI folosite de aplicație</p>
+          </button>
         </div>
       </main>
     </div>
