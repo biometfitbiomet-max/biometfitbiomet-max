@@ -9,8 +9,8 @@ export default function AISettingsPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [apiKey, setApiKey] = useState('');
-  const [visionModel, setVisionModel] = useState('qwen/qwen3.6-27b');
-  const [textModel, setTextModel] = useState('llama-3.3-70b-versatile');
+  const [visionModel, setVisionModel] = useState('gpt-4o');
+  const [textModel, setTextModel] = useState('gpt-4o-mini');
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('admin_authenticated');
@@ -27,8 +27,8 @@ export default function AISettingsPage() {
       const data = await res.json();
       if (!data.error) {
         setApiKey(data.apiKeys?.[0] || '');
-        setVisionModel(data.visionModel || 'qwen/qwen3.6-27b');
-        setTextModel(data.textModel || 'llama-3.3-70b-versatile');
+        setVisionModel(data.visionModel || 'gpt-4o');
+        setTextModel(data.textModel || 'gpt-4o-mini');
       }
     } catch (err) {
       console.error('Failed to fetch AI settings:', err);
@@ -88,7 +88,7 @@ export default function AISettingsPage() {
 
       <main className="max-w-4xl mx-auto px-6 py-8">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-white mb-1">Configurare Groq AI</h1>
+          <h1 className="text-2xl font-bold text-white mb-1">Configurare OpenAI</h1>
           <p className="text-[#8892b0] text-sm">
             Key-ul și modelele sunt stocate în Firestore și sunt citite automat de aplicația mobilă.
           </p>
@@ -97,16 +97,16 @@ export default function AISettingsPage() {
         <form onSubmit={handleSave} className="bg-[#172a45] rounded-2xl p-6 border border-[#233554]">
           {/* API Key */}
           <div className="mb-6">
-            <label className="block text-[#8892b0] text-sm mb-2">Groq API Key</label>
+            <label className="block text-[#8892b0] text-sm mb-2">OpenAI API Key</label>
             <input
               type="text"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
-              placeholder="gsk_..."
+              placeholder="sk-..."
               className="w-full px-4 py-3 rounded-lg bg-[#0a192f] border border-[#233554] text-white placeholder-[#8892b0]/50 focus:outline-none focus:border-[#64ffda]/40 transition-colors font-mono text-sm"
             />
             <p className="text-[#8892b0]/60 text-xs mt-2">
-              Obține key-ul de la <span className="text-[#64ffda]">console.groq.com/keys</span>
+              Obține key-ul de la <span className="text-[#64ffda]">platform.openai.com/api-keys</span>
             </p>
           </div>
 
@@ -118,7 +118,10 @@ export default function AISettingsPage() {
               onChange={(e) => setVisionModel(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[#0a192f] border border-[#233554] text-white focus:outline-none focus:border-[#64ffda]/40 transition-colors"
             >
-              <option value="qwen/qwen3.6-27b">qwen/qwen3.6-27b</option>
+              <option value="gpt-4o">gpt-4o</option>
+              <option value="gpt-4o-mini">gpt-4o-mini (mai rapid)</option>
+              <option value="gpt-4.1">gpt-4.1</option>
+              <option value="gpt-4.1-mini">gpt-4.1-mini (mai rapid)</option>
             </select>
             <p className="text-[#8892b0]/60 text-xs mt-2">
               Folosit pentru: scanare mâncare, analiză analize medicale
@@ -133,10 +136,10 @@ export default function AISettingsPage() {
               onChange={(e) => setTextModel(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[#0a192f] border border-[#233554] text-white focus:outline-none focus:border-[#64ffda]/40 transition-colors"
             >
-              <option value="llama-3.3-70b-versatile">llama-3.3-70b-versatile</option>
-              <option value="llama-3.1-8b-instant">llama-3.1-8b-instant (mai rapid)</option>
-              <option value="openai/gpt-oss-120b">openai/gpt-oss-120b</option>
-              <option value="openai/gpt-oss-20b">openai/gpt-oss-20b (mai rapid)</option>
+              <option value="gpt-4o-mini">gpt-4o-mini</option>
+              <option value="gpt-4o">gpt-4o</option>
+              <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+              <option value="gpt-4.1">gpt-4.1</option>
             </select>
             <p className="text-[#8892b0]/60 text-xs mt-2">
               Folosit pentru: sugestii mese, chat nutriționist
@@ -177,7 +180,7 @@ export default function AISettingsPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div className="text-[#8892b0] text-sm space-y-1">
-              <p>Setările sunt stocate în Firestore la <code className="text-[#64ffda] text-xs">config/groq_settings</code>.</p>
+              <p>Setările sunt stocate în Firestore la <code className="text-[#64ffda] text-xs">config/ai_settings</code>.</p>
               <p>Aplicația mobilă citește automat aceste valori — fără update pe Google Play / App Store.</p>
             </div>
           </div>

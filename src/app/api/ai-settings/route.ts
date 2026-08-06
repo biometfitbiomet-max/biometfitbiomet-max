@@ -6,21 +6,21 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const db = getDb();
-    const doc = await db.collection('config').doc('groq_settings').get();
+    const doc = await db.collection('config').doc('ai_settings').get();
 
     if (!doc.exists) {
       return NextResponse.json({
         apiKeys: [],
-        visionModel: 'qwen/qwen3.6-27b',
-        textModel: 'llama-3.3-70b-versatile',
+        visionModel: 'gpt-4o',
+        textModel: 'gpt-4o-mini',
       });
     }
 
     const data = doc.data();
     return NextResponse.json({
       apiKeys: data?.apiKeys || [],
-      visionModel: data?.visionModel || 'qwen/qwen3.6-27b',
-      textModel: data?.textModel || 'llama-3.3-70b-versatile',
+      visionModel: data?.visionModel || 'gpt-4o',
+      textModel: data?.textModel || 'gpt-4o-mini',
     });
   } catch (error) {
     console.error('Error fetching AI settings:', error);
@@ -35,12 +35,12 @@ export async function PUT(request: Request) {
 
     const updateData = {
       apiKeys: body.apiKeys || [],
-      visionModel: body.visionModel || 'qwen/qwen3.6-27b',
-      textModel: body.textModel || 'llama-3.3-70b-versatile',
+      visionModel: body.visionModel || 'gpt-4o',
+      textModel: body.textModel || 'gpt-4o-mini',
       updatedAt: new Date(),
     };
 
-    await db.collection('config').doc('groq_settings').set(updateData, { merge: true });
+    await db.collection('config').doc('ai_settings').set(updateData, { merge: true });
 
     return NextResponse.json({ success: true });
   } catch (error) {
