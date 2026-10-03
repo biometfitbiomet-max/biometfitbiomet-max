@@ -85,22 +85,28 @@ export default function DashboardPage() {
 
         {/* Stats grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          {statCards.map((stat) => (
-            <div
-              key={stat.label}
-              className={`bg-[#172a45] rounded-2xl p-5 border ${stat.border} hover:border-opacity-40 transition-all`}
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center`}>
-                  <svg className={`w-5 h-5 ${stat.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={stat.icon} />
-                  </svg>
+          {statCards.map((stat) => {
+            const isApprovedCard = stat.label === 'Aprobate azi';
+            return (
+              <button
+                key={stat.label}
+                onClick={() => isApprovedCard && router.push('/dashboard/ingredients/all?filter=approved')}
+                className={`bg-[#172a45] rounded-2xl p-5 border ${stat.border} transition-all text-left ${
+                  isApprovedCard ? 'hover:border-opacity-40 hover:scale-[1.02] cursor-pointer' : 'cursor-default'
+                }`}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center`}>
+                    <svg className={`w-5 h-5 ${stat.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={stat.icon} />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-              <p className={`text-3xl font-bold ${stat.color} mb-1`}>{stat.value}</p>
-              <p className="text-[#8892b0] text-sm">{stat.label}</p>
-            </div>
-          ))}
+                <p className={`text-3xl font-bold ${stat.color} mb-1`}>{stat.value}</p>
+                <p className="text-[#8892b0] text-sm">{stat.label}</p>
+              </button>
+            );
+          })}
         </div>
 
         {/* Review section */}

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, useCallback, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Ingredient {
   id: string;
@@ -23,10 +23,22 @@ interface Ingredient {
   status: string;
   createdBy: string;
   createdAt: string | null;
+  approvedAt?: string | null;
 }
 
 export default function AllIngredientsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0a192f]" />}>
+      <AllIngredientsContent />
+    </Suspense>
+  );
+}
+
+function AllIngredientsContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const filterMode = searchParams.get('filter') || '';
+  const isApprovedMode = filterMode === 'approved';
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -53,6 +65,7 @@ export default function AllIngredientsPage() {
         params.set('pageSize', String(pageSize));
         if (searchTerm) params.set('search', searchTerm);
         if (cursor) params.set('cursor', cursor);
+        if (filterMode) params.set('filter', filterMode);
 
         const res = await fetch(`/api/ingredients/all?${params.toString()}`);
         const data = await res.json();
@@ -228,7 +241,9 @@ export default function AllIngredientsPage() {
               </svg>
               Înapoi
             </button>
-            <span className="text-white font-semibold text-lg">Toate Alimentele</span>
+            <span className="text-white font-semibold text-lg">
+              {isApprovedMode ? 'Alimente aprobate' : 'Toate Alimentele'}
+            </span>
             {totalCount !== null && (
               <span className="text-[#8892b0] text-sm">({totalCount} total)</span>
             )}

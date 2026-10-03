@@ -10,8 +10,87 @@ export async function GET(req: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1');
     const pageSize = parseInt(searchParams.get('pageSize') || '50');
     const category = searchParams.get('category') || '';
+    const filter = searchParams.get('filter') || '';
 
     const db = getDb();
+
+    // ── filter=approved → list user_ingredients with status: approved ──
+    if (filter === 'approved') {
+      // Fetch all approved (no orderBy to avoid needing a composite index;
+      // the number of user-created ingredients is small enough to sort in memory).
+      let q: FirebaseFirestore.Query = db
+        .collection('user_ingredients')
+        .where('status', '==', 'approved')
+        .limit(500);
+
+      const snapshot = await q.get();
+
+      let docs = snapshot.docs;
+      // Sort in memory by approvedAt desc (most recent first)
+      docs = docs.slice().sort((a, b) => {
+        const ta = a.data()?.approvedAt?.toMillis?.() ?? 0;
+        const tb = b.data()?.approvedAt?.toMillis?.() ?? 0;
+        return tb - ta;
+      });
+
+      // Apply search filter in memory if provided
+      let filtered = docs;
+      if (search.trim().length >= 2) {
+        const normalised = search
+          .trim()
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+        filtered = docs.filter((doc) => {
+          const ns = (doc.data()?.nameSearch || '') as string;
+          return ns >= normalised && ns < normalised + '\uf8ff';
+        });
+      }
+
+      // Pagination in memory
+      const start = (page - 1) * pageSize;
+      const pageDocs = filtered.slice(start, start + pageSize);
+
+      const ingredients = pageDocs.map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          name: data.name || '',
+          category: data.category || '',
+          energy: Number.isFinite(data.calories) ? data.calories : 0,
+          protein: Number.isFinite(data.protein) ? data.protein : 0,
+          carbohydrates: Number.isFinite(data.carbs) ? data.carbs : 0,
+          fat: Number.isFinite(data.fat) ? data.fat : 0,
+          fiber: data.fiber != null && Number.isFinite(data.fiber) ? data.fiber : null,
+          sugar: data.sugar != null && Number.isFinite(data.sugar) ? data.sugar : null,
+          saturatedFat: data.saturatedFat != null && Number.isFinite(data.saturatedFat) ? data.saturatedFat : null,
+          sodium: data.salt != null && Number.isFinite(data.salt) ? data.salt : null,
+          nutriscore: data.nutriscore || null,
+          isVegan: data.isVegan ?? null,
+          isVegetarian: data.isVegetarian ?? null,
+          imageUrl: data.imageUrl || null,
+          barcode: data.barcode || null,
+          status: 'approved',
+          createdBy: data.userId || 'user',
+          createdAt: data.createdAt?.toDate?.()?.toISOString() || null,
+          approvedAt: data.approvedAt?.toDate?.()?.toISOString() || null,
+        };
+      });
+
+      const totalCount = filtered.length;
+      const hasMore = start + pageSize < totalCount;
+
+      return NextResponse.json({
+        ingredients,
+        nextCursor: null,
+        page,
+        pageSize,
+        totalCount,
+        hasMore,
+      });
+    }
+
+    // ── default: list the official `ingredients` collection ──
     let query: FirebaseFirestore.Query = db.collection('ingredients');
 
     // Filter by category if provided
