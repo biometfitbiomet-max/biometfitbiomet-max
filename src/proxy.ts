@@ -9,6 +9,11 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // TEMP: debug env vars
+  if (pathname.startsWith('/api/debug-env')) {
+    return NextResponse.next();
+  }
+
   const isApi = pathname.startsWith('/api/');
   const isDashboard = pathname.startsWith('/dashboard');
 
