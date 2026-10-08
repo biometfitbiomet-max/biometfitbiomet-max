@@ -1,0 +1,846 @@
+{
+  "1": {
+    "id": 1,
+    "nameRo": "Genuflexiuni",
+    "nameEn": "Squat",
+    "description": "Exercițiu fundamental pentru dezvoltarea mușchilor picioarelor și feselor. Lucrează quadriceps, glutei și ischiogambieri.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Coboară încet flexând genunchii, ca și cum te așezi pe un scaun",
+      "Menține spatele drept și genunchii aliniați cu vârfurile picioarelor",
+      "Coboară până când coapsele sunt paralele cu solul",
+      "Ridică-te înapoi la poziția inițială împingând din călcâie"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Quadriceps",
+      "Glutei",
+      "Ischiogambieri"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Greutăți libere",
+      "Halte"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "2": {
+    "id": 2,
+    "nameRo": "Împins la piept cu haltera",
+    "nameEn": "Bench Press",
+    "description": "Exercițiu clasic pentru dezvoltarea mușchilor pectorali, tricepși și umeri anteriori.",
+    "instructions": [
+      "Așază-te pe banca cu spatele plat și picioarele pe sol",
+      "Prinde bara cu o prindere puțin mai largă decât umerii",
+      "Coboară bara încet până când atinge pieptul",
+      "Menține coatele la un unghi de 45 de grade",
+      "Împinge bara înapoi la poziția inițială"
+    ],
+    "category": "Piept",
+    "muscles": [
+      "Pectorali"
+    ],
+    "musclesSecondary": [
+      "Tricepși",
+      "Deltoid anterior"
+    ],
+    "equipment": [
+      "Halte",
+      "Bancă"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "3": {
+    "id": 3,
+    "nameRo": "Ramat la cablu",
+    "nameEn": "Cable Row",
+    "description": "Exercițiu excelent pentru dezvoltarea mușchilor spatelui, în special a dorsei.",
+    "instructions": [
+      "Așază-te la aparat cu picioarele ușor flexate",
+      "Prinde mânerul cu ambele mâini",
+      "Trage mânerul spre abdomen, contractând spatele",
+      "Menține spatele drept pe tot parcursul mișcării",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Spate",
+    "muscles": [
+      "Dorsal"
+    ],
+    "musclesSecondary": [
+      "Rhomboid",
+      "Bicepși"
+    ],
+    "equipment": [
+      "Cablu"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "4": {
+    "id": 4,
+    "nameRo": "Presă umeri cu gantere",
+    "nameEn": "Shoulder Press",
+    "description": "Exercițiu pentru dezvoltarea mușchilor umerilor, în special a deltoidului anterior și medial.",
+    "instructions": [
+      "Stai sau așază-te cu spatele drept",
+      "Ține ganterele la nivelul umerilor, palmele orientate înainte",
+      "Împinge ganterele încet deasupra capului",
+      "Menține coatele ușor flexate la punctul maxim",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Umeri",
+    "muscles": [
+      "Deltoid anterior"
+    ],
+    "musclesSecondary": [
+      "Deltoid medial",
+      "Tricepși"
+    ],
+    "equipment": [
+      "Gantere"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "5": {
+    "id": 5,
+    "nameRo": "Flexii cu gantere",
+    "nameEn": "Dumbbell Curls",
+    "description": "Exercițiu izolat pentru dezvoltarea mușchilor bicepșilor.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Ține ganterele lateral, palmele orientate înainte",
+      "Flexează cotul ridicând gantera spre umăr",
+      "Menține cotul fix lângă corp",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Bicepși",
+    "muscles": [
+      "Bicepși"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Gantere"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "6": {
+    "id": 6,
+    "nameRo": "Extensii la scripete",
+    "nameEn": "Cable Tricep Extensions",
+    "description": "Exercițiu pentru dezvoltarea mușchilor tricepșilor.",
+    "instructions": [
+      "Așază-te la cablu cu spatele la aparat",
+      "Prinde bara cu prindere de sus",
+      "Începe cu brațele flexate deasupra capului",
+      "Extinde brațele încet până sunt complet drepte",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Tricepși",
+    "muscles": [
+      "Tricepși"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Cablu"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1785768496,
+      "_nanoseconds": 51000000
+    }
+  },
+  "7": {
+    "id": 7,
+    "nameRo": "Crunch",
+    "nameEn": "Crunch",
+    "description": "Exercițiu clasic pentru dezvoltarea mușchilor abdominali.",
+    "instructions": [
+      "Așază-te pe spate cu genunchii flexați",
+      "Pune mâinile după ceafă sau pe piept",
+      "Ridică umerii de pe sol contractând abdomenul",
+      "Menține gâtul relaxat",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Abdomen",
+    "muscles": [
+      "Abdomen"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Greutate corporală"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "8": {
+    "id": 8,
+    "nameRo": "Presă pentru picioare",
+    "nameEn": "Leg Press",
+    "description": "Exercițiu pentru dezvoltarea mușchilor picioarelor, similar cu genuflexiunile dar cu greutate mai mare.",
+    "instructions": [
+      "Așază-te la aparat cu spatele bine sprijinit",
+      "Pune picioarele pe platformă la lățimea umerilor",
+      "Coboară platforma încet flexând genunchii",
+      "Nu bloca genunchii la extensie completă",
+      "Ridică platforma înapoi la poziția inițială"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Quadriceps",
+      "Glutei",
+      "Ischiogambieri"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Aparat presă picioare"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "9": {
+    "id": 9,
+    "musclesSecondary": [],
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "difficulty": "Începător",
+    "instructions": [
+      "Așază-te la aparat cu picioarele sub suport",
+      "Prinde bara cu prindere largă",
+      "Trage bara spre pieptul superior",
+      "Menține spatele drept și contractat",
+      "Coboară încet la poziția inițială"
+    ],
+    "muscles": [
+      "Dorsal",
+      "Rhomboid",
+      "Bicepși"
+    ],
+    "nameRo": "Lat Pulldown.",
+    "description": "Exercițiu pentru dezvoltarea mușchilor spatelui, în special a dorsei.",
+    "equipment": [
+      "Cablu"
+    ],
+    "nameEn": "Lat Pulldown",
+    "category": "Spate",
+    "updatedAt": {
+      "_seconds": 1785762826,
+      "_nanoseconds": 963000000
+    }
+  },
+  "10": {
+    "id": 10,
+    "nameRo": "Lat Pulldown",
+    "nameEn": "Lat Pulldown",
+    "description": "Exercițiu pentru dezvoltarea mușchilor spatelui, în special a dorsei.",
+    "instructions": [
+      "Așază-te la aparat cu picioarele sub suport",
+      "Prinde bara cu prindere largă",
+      "Trage bara spre pieptul superior",
+      "Menține spatele drept și contractat",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Spate",
+    "muscles": [
+      "Dorsal",
+      "Rhomboid",
+      "Bicepși"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Cablu"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "11": {
+    "id": 11,
+    "nameRo": "Ridicări laterale",
+    "nameEn": "Lateral Raises",
+    "description": "Exercițiu pentru dezvoltarea mușchilor umerilor laterali.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Ține ganterele lateral, palmele orientate spre corp",
+      "Ridică ganterele lateral până la nivelul umerilor",
+      "Menține coatele ușor flexate",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Umeri",
+    "muscles": [
+      "Deltoid lateral"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Gantere"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "12": {
+    "id": 12,
+    "nameRo": "Flexii cu bara",
+    "nameEn": "Barbell Curls",
+    "description": "Exercițiu pentru dezvoltarea mușchilor bicepșilor cu greutăți mai mari.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Prinde bara cu prindere de sub",
+      "Flexează cotul ridicând bara spre umăr",
+      "Menține coatele fixe lângă corp",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Bicepși",
+    "muscles": [
+      "Bicepși"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Bară"
+    ],
+    "difficulty": "Intermediar",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "13": {
+    "id": 13,
+    "nameRo": "Extensii deasupra capului",
+    "nameEn": "Overhead Extensions",
+    "description": "Exercițiu pentru dezvoltarea mușchilor tricepșilor.",
+    "instructions": [
+      "Stai sau așază-te cu spatele drept",
+      "Ține o ganteră sau halteră deasupra capului",
+      "Coboară greutatea încet în spatele capului",
+      "Menține coatele fixe",
+      "Ridică greutatea înapoi la poziția inițială"
+    ],
+    "category": "Tricepși",
+    "muscles": [
+      "Tricepși"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Gantere",
+      "Halte"
+    ],
+    "difficulty": "Intermediar",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "14": {
+    "id": 14,
+    "nameRo": "Plank",
+    "nameEn": "Plank",
+    "description": "Exercițiu izometric pentru întărirea mușchilor core și abdominali.",
+    "instructions": [
+      "Așază-te în poziție de flotare pe antebrațe",
+      "Menține corpul într-o linie dreaptă",
+      "Contractează abdomenul și fesele",
+      "Menține poziția pentru 30-60 secunde",
+      "Respiră constant pe tot parcursul exercițiului"
+    ],
+    "category": "Abdomen",
+    "muscles": [
+      "Abdomen",
+      "Core"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Greutate corporală"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "15": {
+    "id": 15,
+    "musclesSecondary": [],
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "difficulty": "Intermediar",
+    "instructions": [
+      "Așază-te la cablu cu spatele la aparat",
+      "Prinde cablul cu ambele mâini",
+      "Trage cablul spre față, la nivelul ochilor",
+      "Separați cablurile la final",
+      "Coboară încet la poziția inițială"
+    ],
+    "muscles": [
+      "Deltoid posterior",
+      "Rhomboid"
+    ],
+    "nameRo": "Face Pull",
+    "description": "Exercițiu pentru dezvoltarea mușchilor umerilor posteriori și a spatelui.",
+    "equipment": [
+      "Cablu"
+    ],
+    "nameEn": "Face Pull",
+    "category": "Umeri",
+    "updatedAt": {
+      "_seconds": 1785768423,
+      "_nanoseconds": 124000000
+    }
+  },
+  "16": {
+    "id": 16,
+    "nameEn": "Face Pull",
+    "description": "Exercițiu pentru dezvoltarea mușchilor umerilor posteriori și a spatelui.",
+    "instructions": [
+      "Așază-te la cablu cu spatele la aparat",
+      "Prinde cablul cu ambele mâini",
+      "Trage cablul spre față, la nivelul ochilor",
+      "Separați cablurile la final",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Umeri",
+    "muscles": [
+      "Deltoid posterior",
+      "Rhomboid"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Cablu"
+    ],
+    "difficulty": "Intermediar",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "nameRo": "Trageri la fata la scripete",
+    "updatedAt": {
+      "_seconds": 1785768612,
+      "_nanoseconds": 170000000
+    }
+  },
+  "17": {
+    "id": 17,
+    "nameRo": "Flexii ciocan",
+    "nameEn": "Hammer Curls",
+    "description": "Varianta a flexiilor cu gantere care lucrează brațul și antebrațul.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Ține ganterele lateral, palmele orientate spre corp",
+      "Flexează cotul ridicând gantera spre umăr",
+      "Menține palmele orientate spre corp",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Bicepși",
+    "muscles": [
+      "Bicepși",
+      "Braț"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Gantere"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "18": {
+    "id": 18,
+    "nameRo": "Îndreptări românești",
+    "nameEn": "Romanian Deadlift",
+    "description": "Exercițiu pentru dezvoltarea mușchilor ischiogambieri și a feselor.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Ține o halteră sau gantere în față",
+      "Coboară încet flexând șoldurile, menținând genunchii ușor flexați",
+      "Menține spatele drept",
+      "Ridică-te înapoi la poziția inițială"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Ischiogambieri",
+      "Glutei"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Halte",
+      "Gantere"
+    ],
+    "difficulty": "Intermediar",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "19": {
+    "id": 19,
+    "nameRo": "Flexii femurali",
+    "nameEn": "Hamstring Curls",
+    "description": "Exercițiu pentru dezvoltarea mușchilor ischiogambieri.",
+    "instructions": [
+      "Așază-te la aparat cu fața în jos",
+      "Ajustează suportul pentru glezne",
+      "Flexează genunchii ridicând suportul",
+      "Menține șoldurile pe aparat",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Ischiogambieri"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Aparat flexii femurali"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "20": {
+    "id": 20,
+    "nameRo": "Ridicări pe vârfuri",
+    "nameEn": "Calf Raises",
+    "description": "Exercițiu pentru dezvoltarea mușchilor gambei.",
+    "instructions": [
+      "Stai cu vârfurile picioarelor pe o platformă ridicată",
+      "Coboară călcâiele cât de mult posibil",
+      "Ridică-te pe vârfuri contractând gambele",
+      "Menține poziția maximă pentru o secundă",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Gambă"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Platformă ridicată",
+      "Greutăți"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "21": {
+    "id": 21,
+    "nameRo": "Fluturări la aparat",
+    "nameEn": "Fly Machine",
+    "description": "Exercițiu pentru dezvoltarea mușchilor pectorali.",
+    "instructions": [
+      "Așază-te la aparat cu spatele bine sprijinit",
+      "Ajustează suporturile la nivelul umerilor",
+      "Adu brațele împreună în fața pieptului",
+      "Menține coatele ușor flexate",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Piept",
+    "muscles": [
+      "Pectorali"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Aparat fluturări"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "22": {
+    "id": 22,
+    "nameRo": "Ramat cu bara",
+    "nameEn": "Barbell Row",
+    "description": "Exercițiu pentru dezvoltarea mușchilor spatelui cu greutăți mari.",
+    "instructions": [
+      "Apleacă-te înainte cu spatele drept",
+      "Prinde bara cu prindere largă",
+      "Trage bara spre abdomen",
+      "Menține spatele drept și contractat",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Spate",
+    "muscles": [
+      "Dorsal",
+      "Rhomboid",
+      "Bicepși"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Bară"
+    ],
+    "difficulty": "Intermediar",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "23": {
+    "id": 23,
+    "nameRo": "Ridicări frontale",
+    "nameEn": "Front Raises",
+    "description": "Exercițiu pentru dezvoltarea mușchilor umerilor anteriori.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Ține ganterele lateral, palmele orientate spre corp",
+      "Ridică ganterele în față până la nivelul umerilor",
+      "Menține coatele ușor flexate",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Umeri",
+    "muscles": [
+      "Deltoid anterior"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Gantere"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "24": {
+    "id": 24,
+    "nameRo": "Fandări",
+    "nameEn": "Lunges",
+    "description": "Exercițiu pentru dezvoltarea mușchilor picioarelor și a echilibrului.",
+    "instructions": [
+      "Stai cu picioarele la lățimea umerilor",
+      "Fă un pas înainte cu un picior",
+      "Coboară până când ambii genunchi sunt la 90 grade",
+      "Menține spatele drept",
+      "Ridică-te și repetă cu celălalt picior"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Quadriceps",
+      "Glutei",
+      "Ischiogambieri"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Greutate corporală",
+      "Gantere"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "25": {
+    "id": 25,
+    "nameEn": "Bulgarian Split Squats",
+    "description": "Varianta unilaterală a genuflexiunilor pentru dezvoltarea picioarelor.",
+    "instructions": [
+      "Așază un picior pe o bancă în spate",
+      "Coboară cu celălalt picior până când genunchiul atinge solul",
+      "Menține spatele drept",
+      "Ridică-te înapoi la poziția inițială",
+      "Repetă cu celălalt picior"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Quadriceps",
+      "Glutei"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Bancă",
+      "Gantere"
+    ],
+    "difficulty": "Intermediar",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "nameRo": "Genuflexiuni Bulgaresti",
+    "updatedAt": {
+      "_seconds": 1784569033,
+      "_nanoseconds": 715000000
+    }
+  },
+  "26": {
+    "id": 26,
+    "nameRo": "Extensii la aparat",
+    "nameEn": "Leg Extensions",
+    "description": "Exercițiu pentru dezvoltarea mușchilor quadriceps.",
+    "instructions": [
+      "Așază-te la aparat cu spatele bine sprijinit",
+      "Ajustează suportul pentru glezne",
+      "Extinde picioarele până sunt complet drepte",
+      "Menține contracția pentru o secundă",
+      "Coboară încet la poziția inițială"
+    ],
+    "category": "Picioare",
+    "muscles": [
+      "Quadriceps"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Aparat extensii"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  },
+  "27": {
+    "id": 27,
+    "nameRo": "Raising legs",
+    "nameEn": "Leg Raises",
+    "description": "Exercițiu pentru dezvoltarea mușchilor abdominali inferiori.",
+    "instructions": [
+      "Așază-te pe spate cu mâinile sub fese",
+      "Ridică picioarele încet până sunt verticale",
+      "Menține genunchii ușor flexați",
+      "Coboară încet la poziția inițială",
+      "Menține spatele lipit de sol"
+    ],
+    "category": "Abdomen",
+    "muscles": [
+      "Abdomen inferior"
+    ],
+    "musclesSecondary": [],
+    "equipment": [
+      "Greutate corporală"
+    ],
+    "difficulty": "Începător",
+    "createdAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    },
+    "updatedAt": {
+      "_seconds": 1782839283,
+      "_nanoseconds": 54000000
+    }
+  }
+}
