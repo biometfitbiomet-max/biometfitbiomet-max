@@ -48,12 +48,6 @@ export default function IngredientsPage() {
   }, [userCache]);
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
-
     fetch('/api/ingredients')
       .then((res) => res.json())
       .then((data) => {

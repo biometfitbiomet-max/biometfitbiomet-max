@@ -13,11 +13,6 @@ export default function AISettingsPage() {
   const [textModel, setTextModel] = useState('gpt-4o-mini');
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
     fetchSettings();
   }, [router]);
 

@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 interface Ingredient {
   id: string;
   name: string;
+  nameEn: string | null;
   category: string;
   energy: number;
   protein: number;
@@ -89,11 +90,6 @@ function AllIngredientsContent() {
   );
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
     fetchIngredients(1, '', null);
   }, [router, fetchIngredients]);
 
@@ -130,15 +126,16 @@ function AllIngredientsContent() {
     setEditing(ing);
     setEditForm({
       name: ing.name,
+      nameEn: ing.nameEn || '',
       category: ing.category,
       energy: String(ing.energy),
       protein: String(ing.protein),
       carbohydrates: String(ing.carbohydrates),
       fat: String(ing.fat),
-      fiber: ing.fiber ? String(ing.fiber) : '',
-      sugar: ing.sugar ? String(ing.sugar) : '',
-      saturatedFat: ing.saturatedFat ? String(ing.saturatedFat) : '',
-      sodium: ing.sodium ? String(ing.sodium) : '',
+      fiber: ing.fiber != null ? String(ing.fiber) : '',
+      sugar: ing.sugar != null ? String(ing.sugar) : '',
+      saturatedFat: ing.saturatedFat != null ? String(ing.saturatedFat) : '',
+      sodium: ing.sodium != null ? String(ing.sodium) : '',
       nutriscore: ing.nutriscore || '',
       imageUrl: ing.imageUrl || '',
       barcode: ing.barcode || '',
@@ -153,15 +150,16 @@ function AllIngredientsContent() {
     try {
       const edits: Record<string, unknown> = {};
       if (editForm.name !== editing.name) edits.name = editForm.name;
+      if (editForm.nameEn !== (editing.nameEn || '')) edits.nameEn = editForm.nameEn;
       if (editForm.category !== editing.category) edits.category = editForm.category;
       if (Number(editForm.energy) !== editing.energy) edits.energy = editForm.energy;
       if (Number(editForm.protein) !== editing.protein) edits.protein = editForm.protein;
       if (Number(editForm.carbohydrates) !== editing.carbohydrates) edits.carbohydrates = editForm.carbohydrates;
       if (Number(editForm.fat) !== editing.fat) edits.fat = editForm.fat;
-      if (editForm.fiber !== (editing.fiber ? String(editing.fiber) : '')) edits.fiber = editForm.fiber;
-      if (editForm.sugar !== (editing.sugar ? String(editing.sugar) : '')) edits.sugar = editForm.sugar;
-      if (editForm.saturatedFat !== (editing.saturatedFat ? String(editing.saturatedFat) : '')) edits.saturatedFat = editForm.saturatedFat;
-      if (editForm.sodium !== (editing.sodium ? String(editing.sodium) : '')) edits.sodium = editForm.sodium;
+      if (editForm.fiber !== (editing.fiber != null ? String(editing.fiber) : '')) edits.fiber = editForm.fiber;
+      if (editForm.sugar !== (editing.sugar != null ? String(editing.sugar) : '')) edits.sugar = editForm.sugar;
+      if (editForm.saturatedFat !== (editing.saturatedFat != null ? String(editing.saturatedFat) : '')) edits.saturatedFat = editForm.saturatedFat;
+      if (editForm.sodium !== (editing.sodium != null ? String(editing.sodium) : '')) edits.sodium = editForm.sodium;
       if (editForm.nutriscore !== (editing.nutriscore || '')) edits.nutriscore = editForm.nutriscore;
       if (editForm.imageUrl !== (editing.imageUrl || '')) edits.imageUrl = editForm.imageUrl;
       if (editForm.barcode !== (editing.barcode || '')) edits.barcode = editForm.barcode;
@@ -187,15 +185,16 @@ function AllIngredientsContent() {
               ? {
                   ...ing,
                   name: editForm.name,
+                  nameEn: editForm.nameEn || null,
                   category: editForm.category,
                   energy: Number(editForm.energy),
                   protein: Number(editForm.protein),
                   carbohydrates: Number(editForm.carbohydrates),
                   fat: Number(editForm.fat),
-                  fiber: editForm.fiber ? Number(editForm.fiber) : null,
-                  sugar: editForm.sugar ? Number(editForm.sugar) : null,
-                  saturatedFat: editForm.saturatedFat ? Number(editForm.saturatedFat) : null,
-                  sodium: editForm.sodium ? Number(editForm.sodium) : null,
+                  fiber: editForm.fiber !== '' ? Number(editForm.fiber) : null,
+                  sugar: editForm.sugar !== '' ? Number(editForm.sugar) : null,
+                  saturatedFat: editForm.saturatedFat !== '' ? Number(editForm.saturatedFat) : null,
+                  sodium: editForm.sodium !== '' ? Number(editForm.sodium) : null,
                   nutriscore: editForm.nutriscore || null,
                   imageUrl: editForm.imageUrl || null,
                   barcode: editForm.barcode || null,
@@ -485,6 +484,15 @@ function AllIngredientsContent() {
                   type="text"
                   value={editForm.name || ''}
                   onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                  className="w-full bg-[#0a192f] text-white rounded-lg px-3 py-2 border border-[#233554] focus:border-[#64ffda] focus:outline-none text-sm"
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-[#8892b0] text-xs mb-1">Nume engleză (nameEn)</label>
+                <input
+                  type="text"
+                  value={editForm.nameEn || ''}
+                  onChange={(e) => setEditForm({ ...editForm, nameEn: e.target.value })}
                   className="w-full bg-[#0a192f] text-white rounded-lg px-3 py-2 border border-[#233554] focus:border-[#64ffda] focus:outline-none text-sm"
                 />
               </div>

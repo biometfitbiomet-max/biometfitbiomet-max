@@ -42,8 +42,13 @@ export async function GET(req: NextRequest) {
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '');
         filtered = docs.filter((doc) => {
-          const ns = (doc.data()?.nameSearch || '') as string;
-          return ns >= normalised && ns < normalised + '\uf8ff';
+          const data = doc.data();
+          const ns = (data?.nameSearch || '') as string;
+          const nsEn = (data?.nameSearchEn || '') as string;
+          return (
+            (ns >= normalised && ns < normalised + '\uf8ff') ||
+            (nsEn >= normalised && nsEn < normalised + '\uf8ff')
+          );
         });
       }
 
@@ -56,6 +61,7 @@ export async function GET(req: NextRequest) {
         return {
           id: doc.id,
           name: data.name || '',
+          nameEn: data.nameEn || null,
           category: data.category || '',
           energy: Number.isFinite(data.calories) ? data.calories : 0,
           protein: Number.isFinite(data.protein) ? data.protein : 0,
@@ -98,17 +104,72 @@ export async function GET(req: NextRequest) {
       query = query.where('category', '==', category);
     }
 
-    // Search by name prefix (using nameSearch field)
+    // Search by name prefix on BOTH nameSearch (RO) and nameSearchEn (EN)
     if (search.trim().length >= 2) {
       const normalised = search
         .trim()
         .toLowerCase()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '');
-      query = query
-        .where('nameSearch', '>=', normalised)
-        .where('nameSearch', '<', normalised + '\uf8ff')
-        .limit(pageSize);
+
+      let base: FirebaseFirestore.Query = db.collection('ingredients');
+      if (category) base = base.where('category', '==', category);
+
+      const [roSnap, enSnap] = await Promise.all([
+        base
+          .where('nameSearch', '>=', normalised)
+          .where('nameSearch', '<', normalised + '\uf8ff')
+          .limit(pageSize)
+          .get(),
+        base
+          .where('nameSearchEn', '>=', normalised)
+          .where('nameSearchEn', '<', normalised + '\uf8ff')
+          .limit(pageSize)
+          .get(),
+      ]);
+
+      // Merge, dedupe by doc id, keep order
+      const seen = new Set<string>();
+      const mergedDocs = [...roSnap.docs, ...enSnap.docs].filter((d) => {
+        if (seen.has(d.id)) return false;
+        seen.add(d.id);
+        return true;
+      });
+
+      const ingredients = mergedDocs.slice(0, pageSize).map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          name: data.name || '',
+          nameEn: data.nameEn || null,
+          category: data.category || '',
+          energy: data.energy || 0,
+          protein: data.protein || 0,
+          carbohydrates: data.carbohydrates || 0,
+          fat: data.fat || 0,
+          fiber: data.fiber || null,
+          sugar: data.sugar || null,
+          saturatedFat: data.saturatedFat || null,
+          sodium: data.sodium || null,
+          nutriscore: data.nutriscore || null,
+          isVegan: data.isVegan || null,
+          isVegetarian: data.isVegetarian || null,
+          imageUrl: data.imageUrl || null,
+          barcode: data.barcode || null,
+          status: data.status || 'approved',
+          createdBy: data.createdBy || 'admin',
+          createdAt: data.createdAt?.toDate()?.toISOString() || null,
+        };
+      });
+
+      return NextResponse.json({
+        ingredients,
+        nextCursor: null,
+        page,
+        pageSize,
+        totalCount: null,
+        hasMore: mergedDocs.length > pageSize,
+      });
     } else {
       // Pagination with cursor — orderBy nameSearch for consistent ordering
       query = query.orderBy('nameSearch').limit(pageSize);
@@ -132,6 +193,7 @@ export async function GET(req: NextRequest) {
       return {
         id: doc.id,
         name: data.name || '',
+        nameEn: data.nameEn || null,
         category: data.category || '',
         energy: data.energy || 0,
         protein: data.protein || 0,

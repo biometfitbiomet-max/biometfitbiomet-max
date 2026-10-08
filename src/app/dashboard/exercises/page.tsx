@@ -30,11 +30,6 @@ export default function ExercisesPage() {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
     fetchExercises();
   }, [router]);
 

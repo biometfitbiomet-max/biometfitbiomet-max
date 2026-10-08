@@ -58,12 +58,6 @@ export default function RecipesPage() {
   }, [userCache]);
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
-
     fetch('/api/recipes')
       .then((res) => res.json())
       .then((data) => {

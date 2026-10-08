@@ -18,11 +18,6 @@ export default function ProgramsPage() {
   const [editName, setEditName] = useState('');
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
     fetchPrograms();
   }, [router]);
 

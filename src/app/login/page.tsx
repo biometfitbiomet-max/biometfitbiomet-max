@@ -17,8 +17,12 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      if (email === 'admin@biometfit.com' && password === 'admin123') {
-        localStorage.setItem('admin_authenticated', 'true');
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      if (res.ok) {
         router.push('/dashboard');
       } else {
         setError('Credențiale invalide');
@@ -79,16 +83,7 @@ export default function LoginPage() {
             >
               {loading ? 'Se încarcă...' : 'Autentificare'}
             </Button>
-            <button
-              type="button"
-              onClick={() => {
-                setEmail('admin@biometfit.com');
-                setPassword('admin123');
-              }}
-              className="w-full text-[#8892b0] text-sm hover:text-[#64ffda] transition-colors py-2"
-            >
-              Completare automată credențiale test
-            </button>
+
           </form>
         </div>
       </div>

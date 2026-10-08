@@ -15,12 +15,6 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
-
     fetch('/api/stats')
       .then((res) => res.json())
       .then((data) => {
@@ -30,8 +24,8 @@ export default function DashboardPage() {
       .finally(() => setLoading(false));
   }, [router]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('admin_authenticated');
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/login');
   };
 

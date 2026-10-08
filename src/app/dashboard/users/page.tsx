@@ -49,11 +49,6 @@ export default function UsersPage() {
   };
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchUsers();
   }, [router]);
@@ -177,7 +172,8 @@ export default function UsersPage() {
                 {filtered.map((user) => (
                   <tr
                     key={user.uid}
-                    className="border-b border-[#233554]/50 hover:bg-[#0a192f]/30 transition-colors"
+                    onClick={() => router.push(`/dashboard/users/${user.uid}`)}
+                    className="border-b border-[#233554]/50 hover:bg-[#0a192f]/30 transition-colors cursor-pointer"
                   >
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">

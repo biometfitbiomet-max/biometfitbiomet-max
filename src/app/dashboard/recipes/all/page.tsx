@@ -79,11 +79,6 @@ export default function AllRecipesPage() {
   );
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('admin_authenticated');
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
     fetchRecipes(1, '', null, '');
   }, [router, fetchRecipes]);
 
